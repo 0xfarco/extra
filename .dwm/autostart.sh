@@ -3,8 +3,7 @@ picom -f &
 
 nitrogen --restore &
 
-exec dwmbar-colored &
-exec alert-batterylow &
+exec slstatus &
 
 # # -R restores the last colorscheme that was in use.
 #wal -R		//uncomment
