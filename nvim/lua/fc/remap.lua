@@ -1,5 +1,5 @@
 vim.g.mapleader = " "
-vim.keymap.set("n", "<leader>pv", vim.cmd.Ex)
+vim.keymap.set("n", "<leader>tr", vim.cmd.Ex)
 
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
@@ -47,3 +47,11 @@ vim.keymap.set("n", "<leader>mr", "<cmd>CellularAutomaton make_it_rain<CR>");
 vim.keymap.set("n", "<leader><leader>", function()
     vim.cmd("so")
 end)
+
+vim.keymap.set("n", "<leader>py", ":w<CR>:term python3 %<CR>")
+vim.keymap.set("n", "<leader>rr", [[:RustRun<CR>]], { noremap = true, silent = true })
+vim.keymap.set("n", "<leader>cb", [[:w<CR>:!cargo build<CR>]], { noremap = true, silent = true })
+vim.keymap.set("n", "<leader>cr", [[:term cargo run<CR>]], { noremap = true, silent = true })
+vim.keymap.set('n', '<leader>rc', [[:w<CR>:term gcc % && ./a.out<CR>]], { noremap = true, silent = true })
+vim.keymap.set('n', '<leader>cp', [[:w<CR>:term g++ % && ./a.out<CR>]], { noremap = true, silent = true })
+vim.keymap.set('n', '<leader>rf', [[:w<CR>:!rustc % -o ./<C-R>=expand('%:t:r')<CR> && ./<C-R>=expand('%:t:r')<CR><CR>]], { noremap = true, silent = true })
