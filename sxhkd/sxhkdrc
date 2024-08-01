@@ -1,0 +1,30 @@
+XF86MonBrightness{Down,Up}
+	brightnessctl s 10%{-,+}
+
+XF86AudioRaiseVolume
+	pactl set-sink-volume @DEFAULT_SINK@ +5%
+
+XF86AudioLowerVolume
+	pactl set-sink-volume @DEFAULT_SINK@ -5%
+
+XF86AudioMute
+	pactl set-sink-mute @DEFAULT_SINK@ toggle 
+
+Alt + r
+	rofi -show run
+
+Alt + Shift + r
+	rofi -show drun
+
+Super + f
+	firefox
+
+Super + q
+	qutebrowser
+
+Super + b
+	brave
+
+Alt + Super + f
+	st -e ranger
+
