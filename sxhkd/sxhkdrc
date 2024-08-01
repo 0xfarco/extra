@@ -25,6 +25,6 @@ super + q
 super + b
 	brave
 
-alt + super + f
+alt + shift + f
 	st -e ranger
 
