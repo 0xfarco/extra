@@ -10,21 +10,21 @@ XF86AudioLowerVolume
 XF86AudioMute
 	pactl set-sink-mute @DEFAULT_SINK@ toggle 
 
-Alt + r
+alt + r
 	rofi -show run
 
-Alt + Shift + r
+alt + shift + r
 	rofi -show drun
 
-Super + f
+super + f
 	firefox
 
-Super + q
+super + q
 	qutebrowser
 
-Super + b
+super + b
 	brave
 
-Alt + Super + f
+alt + super + f
 	st -e ranger
 
