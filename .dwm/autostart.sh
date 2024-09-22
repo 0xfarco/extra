@@ -1,4 +1,5 @@
 picom -f &
-exec ~/.scripts/status.sh &
-feh --bg-scale ~/Pictures/wallpaper/artix1.png
+dwmblocks &
+xautolock -time 5 -locker slock &
+feh --bg-scale ~/Pictures/wallpaper/arch1.png
 sxhkd -c ~/.config/sxhkd/sxhkdrc
