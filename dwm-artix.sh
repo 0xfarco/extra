@@ -9,10 +9,9 @@ polkit sxhkd alacritty rofi feh dunst picom github-cli\
 tlp tlp-runit tlp-rdw thermald thermald-runit lm_sensors lm_sensors-runit \
 trizen dosfstools libnotify calcurse exfat-utils firefox\
 nsxiv flameshot ffmpeg ffmpegthumbnailer \
-neovim vim nano \
-mpv vlc \
+neovim vim nano mpv vlc pcmanfm qbittorrent\
 cronie cronie-runit \
-docker docker-runit \
+docker docker-runit freerdp remmina libqalculate qalculate-qt \
 neomutt curl wget isync msmtp pass ca-certificates gettext lynx notmuch \
 man-db ntfs-3g xclip copyq zathura zathura-pdf-mupdf \
 fzf mediainfo brightnessctl htop slock xautolock imlib2 moreutils \
@@ -25,7 +24,6 @@ echo "Downloading and Installing Configuration files"
 cd $HOME
 
 git clone https://github.com/autocraticbinary/dotfiles
-git clone https://github.com/autocraticbinary/.scripts
 
 mkdir Pictures Public Documents
 mkdir -p $HOME/.local/bin
