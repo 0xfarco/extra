@@ -4,9 +4,9 @@
 
 [[ -f ~/.bashrc ]] && . ~/.bashrc
 
-export PATH=$PATH:$HOME/.scripts
+export PATH=$PATH:$HOME/.local/bin
 export EDITOR="vim"
-export TERMINAL="st"
+export TERMINAL="alacritty"
 
 
 # Automatically run startx

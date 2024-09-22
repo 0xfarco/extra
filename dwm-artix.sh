@@ -27,16 +27,23 @@ cd $HOME
 git clone https://github.com/autocraticbinary/dotfiles
 git clone https://github.com/autocraticbinary/.scripts
 
-mkdir Pictures Public Documents 
+mkdir Pictures Public Documents
+mkdir -p $HOME/.local/bin
 
 cd $HOME/dotfiles
 tail .xinitrc -n 3 >> ~/.xinitrc
 tail .bash_profile -n 11 >> ~/.bash_profile
 cp -r .dwm ~
-cp -r alacritty dunst picom lf rofi sxhkd $HOME/.config
 cp .tmux.conf ~
 cp .vimrc ~
 sudo cp 30-touchpad.conf /etc/X11/xorg.conf.d/
+cp -r wallpaper $HOME/Pictures
+
+cd config
+cp -r alacritty dunst picom lf rofi sxhkd $HOME/.config
+
+cd scripts
+cp -r * $HOME/.local/bin
 
 cd $HOME/.config/alacritty
 alacritty migrate
