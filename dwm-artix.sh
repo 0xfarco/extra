@@ -59,6 +59,23 @@ sudo make clean install
 cd ../dwmblocks
 sudo make clean install
 
+echo "Creating Login Manager Entry for DWM"
+
+sudo mkdir -p /usr/share/xsessions
+cd /usr/share/xsessions
+sudo touch dwm.desktop
+sudo chown $USER dwm.desktop
+sudo cat > dwm.desktop <<EOF
+[Desktop Entry]
+Encoding=UTF-8
+Name=Dwm
+Comment=the dynamic window manager
+Exec=dwm
+Icon=dwm
+Type=XSession
+
+EOF
+
 echo "Installing yay"
 
 mkdir -p $HOME/Public/apps
