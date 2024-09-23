@@ -4,23 +4,23 @@ XF86MonBrightnessDown
 XF86MonBrightnessUp
 	brightnessctl -q set +10%
 
-XF86AudioRaiseVolume
+#XF86AudioRaiseVolume
 #	pactl set-sink-volume @DEFAULT_SINK@ +5%
-	pamixer -i 5
+#	pamixer -i 5
 
-XF86AudioLowerVolume
+#XF86AudioLowerVolume
 #	pactl set-sink-volume @DEFAULT_SINK@ -5%
-	pamixer -d 5
+#	pamixer -d 5
 
-XF86AudioMute
+#XF86AudioMute
 #	pactl set-sink-mute @DEFAULT_SINK@ toggle 
-	pamixer --toggle-mute
+#	pamixer --toggle-mute
 
-#XF86Audio{Raise,Lower}Volume  
-#  pulsemixer --change-volume {+,-}10  
+XF86Audio{Raise,Lower}Volume  
+  pulsemixer --change-volume {+,-}5  
  
-#XF86AudioMute  
-#  pulsemixer  --toggle-mute
+XF86AudioMute  
+  pulsemixer  --toggle-mute
 
 alt + r
 	rofi -show run
@@ -38,7 +38,13 @@ super + b
 	brave
 
 alt + shift + f
-	alacritty -e ranger
+	alacritty -e lfub
+
+alt + semicolon
+  /usr/bin/trayer --edge top --align right --widthtype request --transparent true --alpha 250 --height 19 --distance 20
+
+alt + shift + semicolon
+  kill $(pidof trayer)
 
 super + Return
   kitty
