@@ -40,11 +40,12 @@ super + b
 alt + shift + f
 	alacritty -e lfub
 
-alt + semicolon
-  /usr/bin/trayer --edge top --align right --widthtype request --transparent true --alpha 250 --height 19 --distance 20
+super + p
+	powermenu
 
-alt + shift + semicolon
-  kill $(pidof trayer)
+super + m
+	neomutt
 
-super + Return
-  kitty
+alt + s
+	flameshot gui
+
