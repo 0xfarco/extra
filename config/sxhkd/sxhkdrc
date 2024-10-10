@@ -41,7 +41,7 @@ alt + shift + f
 	alacritty -e lfub
 
 super + p
-  sysact
+  powermenu
 
 super + m
 	alacritty -e neomutt
