@@ -41,10 +41,10 @@ alt + shift + f
 	alacritty -e lfub
 
 super + p
-	powermenu
+  sysact
 
 super + m
-	neomutt
+	alacritty -e neomutt
 
 alt + s
 	flameshot gui
