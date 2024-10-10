@@ -1,0 +1,23 @@
+Setup hibernation on linux with grub
+
+1. create a swap partition
+  - lblk
+  - /dev/sdx
+
+2. pass swap location to kernel
+  - sudo vim /etc/mkinitcpio.conf
+
+    add resume to HOOKS
+    `HOOKS=(... filesystems resume fsck)`
+
+  - sudo vim /etc/default/grub
+
+    `GRUB_CMDLINE_LINUX_DEFAULT="... resume=/dev/sdx"`
+
+  - sudo grub-mkconfig -o /boot/grub/grub.cfg
+
+3. 
+  - sudo vim /etc/elogind/logind.conf
+    `HandleSuspendKey=hibernate`
+    `HandleHibernateKey=hibernate`
+    `HandleLidSwitch=hybrid-sleep`
