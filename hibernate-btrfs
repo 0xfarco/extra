@@ -1,0 +1,42 @@
+
+1. Edit /etc/mkinitcpio.conf
+
+$ sudo vim /etc/mkinitcpio.conf
+  - add `resume` in the HOOKS
+
+  HOOKS=(... filesystems resume fsck)
+
+2. Regenerate grub config
+
+$ sudo mkinitcpio -p linux
+
+3. Download btrfs_map_physical.c
+
+- https://raw.githubusercontent.com/osandov/osandov-linux/refs/heads/main/scripts/btrfs_map_physical.c
+
+- Compile
+  $ gcc -O2 -o btrfs_map_physical btrfs_map_physical.c
+
+4. Run btrfs_map_physical
+
+$ sudo ./btrfs_map_physical | cut -f 9 | head -2
+
+it will print the physical offset
+
+$ getconf PAGESIZE
+
+will print the PAGESIZE
+
+5. Get the resume_offset
+
+$ echo "$(sudo ./btrfs_map_physical | cut -f 9 | head -2) / $(getconf PAGESIZE)"
+
+6. Get UUID of partition
+
+$ sudo blkid
+
+7. Edit /etc/default/grub
+
+$ sudo vim /etc/default/grub
+
+GRUB_CMDLINE_LINUX_DEFAULT="... resume=UUID=uuidofthepartition resume_offset=offset"
