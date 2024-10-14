@@ -37,6 +37,12 @@ super + c
 super + b
 	brave
 
+super + q
+  qutebrowser
+
+super + w
+  camtoggle
+
 alt + shift + f
 	alacritty -e lfub
 
