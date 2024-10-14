@@ -1,3 +1,26 @@
+# create swapfile
+
+sudo touch /swapfile
+
+sudo chmod 600 /swapfile
+
+sudo chattr +C /swapfile
+
+sudo lsattr /swapfile
+
+sudo dd if=/dev/zero of=/swapfile bs=1M count=7168 status=progress
+
+sudo mkswap /swapfile
+
+sudo swapon /swapfile
+
+
+sudo vim /etc/fstab
+
+  /swapfile    none    swap    default    0 0
+
+-----------------------------------------------------------------------------------------------------
+# enable hibernation
 
 1. Edit /etc/mkinitcpio.conf
 
@@ -19,7 +42,7 @@ $ sudo mkinitcpio -p linux
 
 4. Run btrfs_map_physical
 
-$ sudo ./btrfs_map_physical | cut -f 9 | head -2
+$ sudo ./btrfs_map_physical /swapfile | cut -f 9 | head -2
 
 it will print the physical offset
 
@@ -29,7 +52,7 @@ will print the PAGESIZE
 
 5. Get the resume_offset
 
-$ echo "$(sudo ./btrfs_map_physical | cut -f 9 | head -2) / $(getconf PAGESIZE)"
+$ echo "$(sudo ./btrfs_map_physical | cut -f 9 | head -2) / $(getconf PAGESIZE)" | bc
 
 6. Get UUID of partition
 
