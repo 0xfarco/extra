@@ -52,6 +52,6 @@ super + p
 super + m
 	alacritty -e neomutt
 
-alt + s
+Print
 	flameshot gui
 
