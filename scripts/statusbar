@@ -1,0 +1,18 @@
+#!/bin/bash
+
+battery () {
+  ~/.local/bin/battery
+}
+
+internet () {
+  ~/.local/bin/wifi
+}
+
+clock () {
+  date +"%d-%m-%Y %a %H:%M:%S"
+}
+
+while :; do
+  xsetroot -name "$(battery)  :  $(internet)  :  $(clock)"
+  sleep 1
+done

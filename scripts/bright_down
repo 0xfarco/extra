@@ -1,3 +1,0 @@
-#!/bin/bash
-
-brightnessctl -q set 10%-
