@@ -11,17 +11,10 @@
 
 getdim() { xrandr | grep -oP '(?<=current ).*(?=,)' | tr -d ' ' ;}
 
-updateicon() { \
-	echo "$1" > /tmp/recordingicon
-	pkill -RTMIN+9 "${STATUSBAR:-dwmblocks}"
-	}
-
 killrecording() {
 	recpid="$(cat /tmp/recordingpid)"
 	kill -15 "$recpid"
 	rm -f /tmp/recordingpid
-	updateicon ""
-	pkill -RTMIN+9 "${STATUSBAR:-dwmblocks}"
 	}
 
 screencast() { \
@@ -36,8 +29,8 @@ screencast() { \
  	-c:v h264 \
 	-crf 0 -preset ultrafast -c:a aac \
 	"$HOME/Public/Recordings/screencast-$(date '+%y%m%d-%H%M-%S').mp4" &
-	echo $! > /tmp/recordingpid
-	updateicon "🔴 📺 🎤"
+	echo $! > /tmp/recordingpid &
+	notify-send "🔴 Recording"
        	}
 
 video() { ffmpeg \
@@ -47,8 +40,8 @@ video() { ffmpeg \
 	-i "$DISPLAY" \
  	-c:v libx264 -qp 0 -r 30 \
 	"$HOME/Public/Recordings/video-$(date '+%y%m%d-%H%M-%S').mkv" &
-	echo $! > /tmp/recordingpid
-	updateicon "🔴 📺"
+	echo $! > /tmp/recordingpid &
+	notify-send "🔴 Recording"
 	}
 
 webcamhidef() { ffmpeg \
@@ -56,8 +49,8 @@ webcamhidef() { ffmpeg \
 	-i /dev/video0 \
 	-video_size 1920x1080 \
 	"$HOME/Public/Recordings/webcam-$(date '+%y%m%d-%H%M-%S').mkv" &
-	echo $! > /tmp/recordingpid
-	updateicon "🔴 📷"
+	echo $! > /tmp/recordingpid &
+	notify-send "🔴 Recording"
 	}
 
 webcam() { ffmpeg \
@@ -65,8 +58,8 @@ webcam() { ffmpeg \
 	-i /dev/video0 \
 	-video_size 640x480 \
 	"$HOME/Public/Recordings/webcam-$(date '+%y%m%d-%H%M-%S').mkv" &
-	echo $! > /tmp/recordingpid
-	updateicon "🔴 📷"
+	echo $! > /tmp/recordingpid &
+	notify-send "🔴 Recording"
 	}
 
 
@@ -75,8 +68,8 @@ audio() { \
 	-f alsa -i default \
 	-c:a flac \
 	"$HOME/Public/Recordings/audio-$(date '+%y%m%d-%H%M-%S').flac" &
-	echo $! > /tmp/recordingpid
-	updateicon "🔴 🎤"
+	echo $! > /tmp/recordingpid &
+	notify-send "🔴 Recording"
 	}
 
 askrecording() { \
@@ -109,8 +102,8 @@ videoselected()
 	-i :0.0+"$X,$Y" \
 	-c:v libx264 -qp 0 -r 30 \
 	"$HOME/Public/Recordings/box-$(date '+%y%m%d-%H%M-%S').mkv" &
-	echo $! > /tmp/recordingpid
-	updateicon "🔴 🎥"
+	echo $! > /tmp/recordingpid &
+	notify-send "🔴 Recording"
 }
 
 case "$1" in
