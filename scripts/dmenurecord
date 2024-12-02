@@ -11,10 +11,10 @@
 
 getdim() { xrandr | grep -oP '(?<=current ).*(?=,)' | tr -d ' ' ;}
 
-updateicon() { \
-	echo "$1" > /tmp/recordingicon
-	pkill -RTMIN+9 "${STATUSBAR:-dwmblocks}"
-	}
+#updateicon() { \
+#	echo "$1" > /tmp/recordingicon
+#	pkill -RTMIN+9 "${STATUSBAR:-dwmblocks}"
+#	}
 
 killrecording() {
 	recpid="$(cat /tmp/recordingpid)"
