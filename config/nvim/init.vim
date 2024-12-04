@@ -1,6 +1,9 @@
 " Set leader key
 let mapleader = " "
 
+set number
+set relativenumber
+
 " Open Ex mode (file explorer)
 nnoremap <leader>tr :Lexplore!<CR>
 
