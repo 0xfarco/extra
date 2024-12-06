@@ -44,7 +44,7 @@ super + w
   camtoggle
 
 alt + shift + e
-	st -e lf
+	st -e lfub
 
 super + p
   powermenu
