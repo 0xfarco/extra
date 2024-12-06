@@ -57,6 +57,3 @@ Print
 
 super + shift + c
 	st -e calcurse
-
-alt + return
-  st -e tmux
