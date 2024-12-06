@@ -43,15 +43,20 @@ super + q
 super + w
   camtoggle
 
-alt + shift + f
-	alacritty -e lfub
+alt + shift + e
+	st -e lf
 
 super + p
   powermenu
 
 super + m
-	alacritty -e neomutt
+	st -e neomutt
 
 Print
 	flameshot gui
 
+super + shift + c
+	st -e calcurse
+
+alt + return
+  st -e tmux
