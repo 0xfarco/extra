@@ -1,3 +1,5 @@
+(package-initialize)
+
 ;;(setq custom-file "C://Users//0xfarco//.emacs.d//.emacs.custom.el")
 (setq custom-file "~/.emacs.d/.emacs.custom.el")
 (add-to-list 'load-path "~/.emacs.d/lang/")
