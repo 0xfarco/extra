@@ -7,7 +7,7 @@ libx11 libxft libxinerama \
 xorg-xrandr xorg-xwininfo base-devel \
 polkit sxhkd alacritty rofi feh dunst picom github-cli\
 tlp tlp-runit tlp-rdw thermald thermald-runit lm_sensors lm_sensors-runit \
-trizen dosfstools libnotify calcurse exfat-utils firefox\
+trizen dosfstools libnotify calcurse exfat-utils firefox cmake\
 nsxiv flameshot ffmpeg ffmpegthumbnailer \
 neovim vim nano mpv vlc pcmanfm qbittorrent\
 cronie cronie-runit \
