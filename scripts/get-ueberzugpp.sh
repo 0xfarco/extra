@@ -17,9 +17,9 @@ fi
 
 # Install dependencies
 if [ "$DISTRO" = "arch" ]; then
-    sudo pacman -S --noconfirm cmake libvips libsixel chafa openssl onetbb xcb-util-image extra-cmake-modules fmt spdlog range-v3 cli11 nlohmann-json
+    sudo pacman -S --noconfirm cmake libvips libsixel chafa openssl onetbb xcb-util-image extra-cmake-modules fmt spdlog range-v3 cli11 nlohmann-json opencv
 elif [ "$DISTRO" = "void" ]; then
-    sudo xbps-install -Sy cmake libvips libsixel chafa openssl tbb xcb-util-image fmt spdlog range-v3 extra-cmake-modules
+    sudo xbps-install -Sy cmake libvips libsixel chafa openssl tbb xcb-util-image fmt spdlog range-v3 extra-cmake-modules opencv
 fi
 
 # Clone and build ueberzugpp
