@@ -1,0 +1,141 @@
+#!/bin/bash
+set -e
+
+if [[ $EUID -ne 0 ]]; then
+    echo "Please run as root"
+    exit 1
+fi
+
+# Check if required USE flags are present in /etc/portage/make.conf
+required_use_flags=("elogind" "dbus" "policykit" "X" "xinerama" "pulseaudio" "lm-sensors")
+missing_flags=()
+
+for flag in "${required_use_flags[@]}"; do
+    if ! grep -qE "(^| )${flag}( |$)" /etc/portage/make.conf; then
+        missing_flags+=("$flag")
+    fi
+done
+
+if [ ${#missing_flags[@]} -ne 0 ]; then
+    echo "The following required USE flags are missing in /etc/portage/make.conf: ${missing_flags[*]}"
+    echo "Please add them to the USE variable before running this script."
+    exit 1
+fi
+
+# Install eselect-repository if missing
+if ! command -v eselect &> /dev/null; then
+    emerge --ask app-eselect/eselect-repository
+fi
+
+# Enable GURU repository if not enabled
+if ! eselect repository list | grep -q '^ *[0-9]\+ *guru'; then
+    eselect repository enable guru
+fi
+
+# Enable LibreWolf repository if not enabled
+if ! eselect repository list | grep -q '^ *[0-9]\+ *librewolf'; then
+    eselect repository enable librewolf
+fi
+
+# Sync repositories
+emerge --sync guru
+emaint -r librewolf sync
+
+# Ensure gentoolkit (for equery) is installed
+if ! command -v equery &> /dev/null; then
+    emerge --ask app-portage/gentoolkit
+fi
+
+# Function to add ACCEPT_KEYWORDS entry for a package
+add_accept_keywords() {
+    local package="$1"
+    local keywords="$2"
+    local filename="${package#*/}"
+    local file="/etc/portage/package.accept_keywords/$filename"
+    echo "${package} ${keywords}" >> "$file"
+}
+
+# Function to add a package.use entry
+add_package_use() {
+    local package="$1"
+    local use_flags="$2"
+    local filename="${package#*/}"
+    local file="/etc/portage/package.use/$filename"
+    echo "${package} ${use_flags}" >> "$file"
+}
+
+add_accept_keywords "dev-util/github-cli" "~amd64"
+add_accept_keywords "media-gfx/nsxiv" "~amd64"
+add_accept_keywords "app-backup/timeshift" "~amd64"
+add_accept_keywords "app-misc/yazi" "~amd64"
+add_package_use "net-wireless/wpa_supplicant" "tkip wep"
+add_package_use "sys-apps/lm-sensors" "sensord"
+add_package_use "x11-misc/picom" "opengl"
+add_package_use "app-emulation/qemu" "QEMU_SOFTMMU_TARGETS: arm x86_64 sparc QEMU_USER_TARGETS: x86_64"
+add_package_use "app-emulation/qemu" "X fuse gtk ncurses plugins pulseaudio udev usb usbredir vde virtfs xattr vte opengl"
+add_package_use ">=x11-libs/xapp-2.8.8-r1" "vala introspection"
+add_package_use ">=dev-libs/libdbusmenu-16.04.0-r3" "gtk3"
+add_package_use ">=app-text/xmlto-0.0.28-r3" "text"
+
+# Define packages to install
+packages=(
+    x11-base/xorg-server
+    x11-libs/libX11
+    x11-libs/libXft
+    x11-libs/libXinerama
+    x11-apps/xinit
+    x11-apps/xrandr
+    media-fonts/dejavu
+    media-fonts/noto
+    media-fonts/noto-emoji
+    media-fonts/fontawesome
+    media-sound/pulseaudio
+    media-sound/pulsemixer
+    media-sound/pavucontrol
+    x11-misc/rofi
+    x11-libs/libnotify
+    x11-misc/dunst
+    x11-misc/picom
+    x11-misc/sxhkd
+    app-office/calcurse
+    media-gfx/ueberzugpp
+    media-gfx/feh
+    sys-power/tlp
+    sys-power/thermald
+    sys-power/acpilight
+    sys-apps/lm-sensors
+    net-news/newsboat
+    media-video/mpv
+    app-text/zathura
+    app-text/zathura-pdf-mupdf
+    dev-util/github-cli
+    media-gfx/nsxiv
+    media-gfx/flameshot
+    media-video/ffmpeg
+    media-video/ffmpegthumbnailer
+    x11-misc/xclip
+    x11-misc/slop
+    x11-misc/slock
+    app-text/tesseract
+    sys-process/htop
+    sys-apps/man-db
+    app-editors/neovim
+    app-editors/vim
+    net-p2p/qbittorrent
+    sci-libs/libqalculate
+    sci-calculators/qalculate-gtk
+    media-video/vlc
+    app-misc/yazi
+    www-client/librewolf-bin
+)
+
+# Install packages only if not already installed
+for pkg in "${packages[@]}"; do
+    if ! equery list "$pkg" &> /dev/null; then
+        echo "Installing $pkg..."
+        emerge --ask "$pkg"
+    else
+        echo "$pkg is already installed, skipping."
+    fi
+done
+
