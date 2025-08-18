@@ -8,7 +8,7 @@ set -e  # Exit on error
 POST_REBOOT_FILE="$HOME/qemu-post-reboot.txt"
 
 echo "==> Installing packages..."
-sudo pacman -S --needed --noconfirm qemu virt-manager virt-viewer dnsmasq vde2 bridge-utils openbsd-netcat libvirt libvirt-runit libguestfs
+sudo pacman -S --needed --noconfirm qemu-desktop virt-manager virt-viewer dnsmasq vde2 bridge-utils openbsd-netcat libvirt libvirt-runit libguestfs
 
 echo "==> Enabling runit services for libvirtd and virtlogd..."
 sudo ln -sf /etc/runit/sv/libvirtd /run/runit/service
