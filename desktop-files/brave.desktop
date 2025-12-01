@@ -1,0 +1,14 @@
+[Desktop Entry]
+Version=1.5
+Type=Application
+Name=Brave Browser
+GenericName=Web Browser
+Comment=Browse the web securely with Brave and block trackers automatically.
+Keywords=Internet;Web;Browser;WWW;Explorer;Brave;
+Exec=/opt/brave/brave %U
+Terminal=false
+StartupNotify=true
+Icon=brave-browser
+Categories=Network;WebBrowser;GTK;
+MimeType=text/html;text/xml;application/xhtml+xml;application/xml;application/rss+xml;application/rdf+xml;image/gif;image/jpeg;image/png;video/webm;application/x-xpinstall;x-scheme-handler/http;x-scheme-handler/https;x-scheme-handler/ftp;x-scheme-handler/chrome;x-scheme-handler/brave;
+

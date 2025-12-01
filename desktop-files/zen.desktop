@@ -1,0 +1,14 @@
+[Desktop Entry]
+Version=1.5
+Type=Application
+Name=Zen Browser
+GenericName=Web Browser
+Comment=Experience tranquillity while browsing the web without people tracking you!
+Keywords=Internet;Web;Browser;WWW;Explorer;
+Exec=/opt/zen/zen %U
+Terminal=false
+StartupNotify=true
+Icon=/opt/zen/browser/chrome/icons/default/default128.png
+Categories=Network;WebBrowser;GTK;
+MimeType=text/html;text/xml;application/xhtml+xml;application/xml;application/rss+xml;application/rdf+xml;image/gif;image/jpeg;image/png;video/webm;application/x-xpinstall;x-scheme-handler/http;x-scheme-handler/https;x-scheme-handler/ftp;x-scheme-handler/chrome;
+
